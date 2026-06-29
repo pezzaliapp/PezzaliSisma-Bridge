@@ -16,6 +16,32 @@ L'obiettivo è **tecnico e prudente**: raccogliere segnali aggregati e renderli
 osservabili, per poterli in futuro **confrontare** con i cataloghi sismici
 ufficiali (INGV/EMSC/USGS). Nessun claim scientifico, nessuna promessa.
 
+## Link da condividere (pagina pubblica)
+
+Per divulgare il progetto **non** condividere il link della repository (mostra
+codice e README tecnici): condividi la **landing page** pubblica, pensata per
+utenti non tecnici e generata con **GitHub Pages** dalla cartella `docs/`:
+
+> **https://pezzaliapp.github.io/PezzaliSisma-Bridge/**
+
+(il link è attivo dopo aver abilitato GitHub Pages — vedi sotto).
+
+### Come attivare GitHub Pages
+
+1. Su GitHub apri **Settings → Pages**.
+2. In **Build and deployment → Source** scegli **Deploy from a branch**.
+3. Seleziona branch **`main`** e cartella **`/docs`**, poi **Save**.
+4. Attendi qualche minuto: la pagina sarà pubblicata all'URL qui sopra.
+
+> ⚠️ **Nota sul pulsante "Apri ricevitore iPhone".** Con Pages pubblicato da
+> `/docs` vengono serviti **solo** i file dentro `docs/`. Il link relativo
+> `../iphone-receiver-pwa/` quindi **non** è raggiungibile dalla pagina
+> pubblicata. Due opzioni:
+> - **A)** pubblicare Pages dalla **root** del repo (Source → `/root`): il link
+>   condiviso diventa `…/PezzaliSisma-Bridge/docs/` e il pulsante funziona;
+> - **B)** mantenere `/docs` e **copiare** la PWA dentro `docs/` (es.
+>   `docs/ricevitore/`) aggiornando il pulsante. Vedi la roadmap/issue.
+
 ## Componenti
 
 | Cartella | Cosa è | Stato |
