@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B3D2E" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>PezzaliSisma — Ricevitore</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>PezzaliSisma — Ricevitore</h1>
+      <p class="subtitle">
+        Progetto <strong>sperimentale</strong> e open source.
+        Solo visualizzazione. Non prevede terremoti e non sostituisce i
+        sistemi ufficiali (INGV/EMSC/USGS/Protezione Civile).
+      </p>
+    </header>
+
+    <section class="card" aria-label="Avviso piattaforma">
+      <p class="notice">
+        ℹ️ Su iPhone questa PWA funziona <strong>solo come ricevitore e
+        visualizzatore</strong> quando è aperta. iOS <strong>non</strong>
+        consente un rilevamento affidabile in background: questa app
+        <strong>non</strong> rileva vibrazioni e <strong>non</strong> promette
+        notifiche in background.
+      </p>
+    </section>
+
+    <section class="card">
+      <label for="endpoint">Endpoint del bridge-server</label>
+      <div class="row">
+        <input id="endpoint" type="url" inputmode="url"
+               placeholder="http://192.168.1.10:3000" autocomplete="off" />
+        <button id="saveBtn" type="button">Salva</button>
+      </div>
+      <div class="row">
+        <button id="refreshBtn" type="button">Aggiorna ora</button>
+        <label class="auto">
+          <input id="autoToggle" type="checkbox" /> Aggiornamento automatico (5s)
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Stato rete</h2>
+      <ul class="kv">
+        <li><span>Connessione</span><strong id="netState">—</strong></li>
+        <li><span>Ultimo aggiornamento</span><strong id="lastUpdate">—</strong></li>
+        <li><span>Nodi unici (totali)</span><strong id="uniqueNodes">—</strong></li>
+        <li><span>Eventi in memoria</span><strong id="eventsCount">—</strong></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Zone attive</h2>
+      <ul id="zonesList" class="list"><li class="empty">Nessun dato.</li></ul>
+    </section>
+
+    <section class="card">
+      <h2>Possibili cluster</h2>
+      <p class="hint">
+        Un possibile cluster compare solo se più nodi unici nella stessa zona
+        inviano eventi ravvicinati. Un singolo nodo non genera mai un avviso.
+      </p>
+      <ul id="clustersList" class="list"><li class="empty">Nessun possibile cluster.</li></ul>
+    </section>
+
+    <footer>
+      <p id="disclaimer" class="disclaimer">
+        Dati sperimentali. Nessuna previsione di terremoti.
+      </p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

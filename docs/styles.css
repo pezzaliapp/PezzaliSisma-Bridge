@@ -144,6 +144,19 @@ body {
   color: var(--ink);
   border: 1px solid var(--line);
 }
+.btn-disabled {
+  width: 100%;
+  background: var(--bg-soft);
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  cursor: not-allowed;
+  font-family: inherit;
+}
+.btn-disabled:active { transform: none; }
+
+/* "Prossimamente" */
+.soon { margin: 6px 0 4px; text-align: center; }
+.soon-note { margin: 8px 0 0; }
 
 /* Footer */
 .foot { text-align: center; margin-top: 24px; color: var(--muted); }
