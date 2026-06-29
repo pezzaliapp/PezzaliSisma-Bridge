@@ -1,0 +1,20 @@
+{
+  "name": "pezzalisisma-bridge-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bridge server sperimentale per PezzaliSisma-Bridge. Riceve eventi candidati di vibrazione da piu nodi e segnala possibili cluster. NON e un sistema di allerta o previsione terremoti.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

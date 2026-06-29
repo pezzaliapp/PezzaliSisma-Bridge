@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PezzaliSisma Node</string>
+
+    <string name="header_title">PezzaliSisma — Nodo</string>
+    <string name="header_subtitle">Progetto sperimentale e open source. Non prevede terremoti e non sostituisce i sistemi ufficiali.</string>
+
+    <string name="label_node_id">ID nodo: %1$s</string>
+    <string name="label_endpoint">Endpoint del bridge-server</string>
+    <string name="hint_endpoint">http://192.168.1.10:3000</string>
+    <string name="label_zone">Zona approssimata</string>
+    <string name="hint_zone">es. milano-nord</string>
+
+    <string name="label_consent">Consenso alla lettura dell\'accelerometro</string>
+
+    <string name="start_service">Avvia nodo</string>
+    <string name="stop_service">Ferma nodo</string>
+
+    <string name="status_ready">Stato: pronto. Premi \"Avvia nodo\" per attivare il servizio in primo piano.</string>
+    <string name="status_not_ready">Stato: non configurato. Inserisci endpoint, zona e concedi il consenso.</string>
+    <string name="service_started">Servizio avviato.</string>
+    <string name="error_missing_config">Inserisci endpoint e zona prima di avviare.</string>
+
+    <!-- Consenso esplicito -->
+    <string name="consent_title">Consenso esplicito</string>
+    <string name="consent_message">Attivando il nodo, l\'app legge SOLO l\'accelerometro per stimare vibrazioni.\n\nVengono inviati al server solo:\n• ID nodo casuale\n• zona approssimata\n• timestamp\n• RMS della vibrazione\n• picco della vibrazione\n• durata stimata\n\nNON vengono inviati nome, numero, email, audio, foto, rubrica o posizione precisa.\n\nÈ un progetto sperimentale: non prevede terremoti e non sostituisce i sistemi ufficiali (INGV/EMSC/USGS/Protezione Civile).</string>
+    <string name="consent_accept">Acconsento</string>
+    <string name="consent_decline">No</string>
+
+    <!-- Notifica del foreground service -->
+    <string name="notif_channel_name">Nodo PezzaliSisma</string>
+    <string name="notif_channel_desc">Notifica persistente del servizio di rilevamento vibrazioni.</string>
+    <string name="notif_title">Nodo PezzaliSisma attivo</string>
+    <string name="notif_text">Rilevazione vibrazioni nella zona: %1$s</string>
+</resources>
