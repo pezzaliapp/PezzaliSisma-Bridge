@@ -9,14 +9,20 @@
  * abilita alcun rilevamento in background: serve solo allo shell statico.
  */
 
-const CACHE = 'pezzalisisma-shell-v1';
+const CACHE = 'pezzalisisma-shell-v2';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.webmanifest',
-  './icon.svg',
+  './favicon.ico',
+  './favicon-32x32.png',
+  './favicon-16x16.png',
+  './apple-touch-icon.png',
+  './icon-192.png',
+  './icon-512.png',
+  './maskable-icon-512.png',
 ];
 
 self.addEventListener('install', (event) => {
