@@ -67,5 +67,16 @@ Da riga di comando (richiede Android SDK e una `local.properties` con
 3. Concedi il **consenso esplicito** (dialog dedicato).
 4. Premi **Avvia nodo**: parte il servizio in primo piano con notifica.
 
-Per i test in rete locale con server in HTTP semplice, valuta una
-`network-security-config` o l'uso di HTTPS in produzione.
+## Note importanti (limiti onesti)
+
+- **HTTP in chiaro**: da Android 9 (API 28) il cleartext è bloccato di default.
+  L'app include una `res/xml/network_security_config.xml` che lo **abilita per i
+  test locali** (server HTTP sulla LAN). In produzione usa **HTTPS** e
+  rimuovi/restringi quella config.
+- **Servizio a tempo limitato su Android recenti**: il foreground service usa il
+  tipo `dataSync`, soggetto a **limiti di durata su Android 14+** (e più
+  restrittivo su Android 15). Il sistema può fermare il servizio dopo un budget
+  giornaliero: il funzionamento "sempre attivo" è realistico soprattutto su
+  Android meno recenti. **Non** è garantita continuità 24/7.
+- **Notifiche**: se l'utente nega `POST_NOTIFICATIONS` (Android 13+), il servizio
+  resta attivo ma la notifica persistente non è mostrata.

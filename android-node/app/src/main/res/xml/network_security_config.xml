@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Config di sicurezza di rete.
+
+  Da Android 9 (API 28) il traffico in chiaro (HTTP) e bloccato per default.
+  Questo progetto e SPERIMENTALE e in fase di test si collega spesso a un
+  bridge-server locale in HTTP semplice (es. http://192.168.1.10:3000).
+
+  Per questo abilitiamo il cleartext. In PRODUZIONE usare HTTPS e rimuovere
+  questo permesso (o restringerlo ai soli host locali).
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

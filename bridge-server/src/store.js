@@ -46,12 +46,6 @@ class EventStore {
     this.events = this.events.filter((e) => e.receivedAt >= cutoff);
   }
 
-  /** Eventi ricevuti negli ultimi `windowMs` ms rispetto a `now`. */
-  recent(windowMs, now) {
-    const cutoff = now - windowMs;
-    return this.events.filter((e) => e.receivedAt >= cutoff);
-  }
-
   /** Tutti gli eventi attualmente in memoria. */
   all() {
     return this.events.slice();

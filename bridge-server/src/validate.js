@@ -3,9 +3,14 @@
 /**
  * Validazione e normalizzazione degli eventi candidati.
  *
- * Per privacy by design il server ACCETTA SOLO i campi previsti e
- * IGNORA qualunque altro campo. In questo modo, anche se un nodo
- * inviasse per errore dati personali, questi non verrebbero memorizzati.
+ * GARANZIA PRINCIPALE (allowlist): il server normalizza tenendo SOLO i campi
+ * previsti (vedi ALLOWED_FIELDS). Qualunque altro campo viene scartato e mai
+ * memorizzato: e questa la vera protezione di privacy by design.
+ *
+ * DIFESA RIDONDANTE (denylist): in piu, se sono presenti alcuni campi
+ * notoriamente personali (FORBIDDEN_FIELDS) l'intero evento viene rifiutato,
+ * per segnalare presto un bug del nodo. La denylist NON e esaustiva (non puo
+ * elencare ogni possibile nome di campo): la garanzia resta l'allowlist.
  *
  * Campi ammessi:
  *   - nodeId    (string)  identificativo casuale del nodo, non riconducibile a persona

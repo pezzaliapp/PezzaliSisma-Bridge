@@ -29,11 +29,13 @@ module.exports = {
   CLUSTER_WINDOW_MS: intFromEnv('CLUSTER_WINDOW_MS', 10000),
 
   // Per quanto tempo (ms) un evento resta in memoria prima di essere scartato.
-  // Deve essere >= CLUSTER_WINDOW_MS.
-  EVENT_TTL_MS: intFromEnv('EVENT_TTL_MS', 60000),
+  // INVARIANTE: deve essere >= sia CLUSTER_WINDOW_MS sia ZONE_ACTIVE_MS,
+  // altrimenti /api/status mostrerebbe finestre piu corte del previsto perche
+  // gli eventi sarebbero gia stati rimossi dal prune.
+  EVENT_TTL_MS: intFromEnv('EVENT_TTL_MS', 180000),
 
   // Per quanto tempo (ms) una zona resta "attiva" nella vista di stato
-  // dopo l'ultimo evento ricevuto.
+  // dopo l'ultimo evento ricevuto. Vedi invariante su EVENT_TTL_MS.
   ZONE_ACTIVE_MS: intFromEnv('ZONE_ACTIVE_MS', 120000),
 
   // Messaggio UNICO ammesso per un possibile cluster.

@@ -20,6 +20,9 @@ moderno.
 - **Non** promette rilevamento o notifiche **in background** su iPhone: iOS non
   lo consente in modo affidabile per una web app. La pagina aggiorna i dati
   solo quando è **aperta**.
+- **Mixed content**: se la PWA è servita in **HTTPS** (es. GitHub Pages), il
+  browser **blocca** le chiamate verso un bridge in `http://` (tipico in LAN).
+  In quel caso servi la PWA in locale (HTTP) oppure esponi il bridge in HTTPS.
 
 ## Avvio locale
 

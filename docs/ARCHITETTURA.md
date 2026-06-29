@@ -103,13 +103,33 @@ finestra temporale e il TTL.
   eventi sismici.
 - La "zona" testuale è grezza; una definizione migliore (con attenzione alla
   privacy) è in roadmap.
-- Nessuna autenticazione dei nodi nella v0.1: adatto a sperimentazione, non a
-  produzione aperta.
+- **La finestra "entro 10 s" è misurata sull'arrivo al server (`receivedAt`)**,
+  non sull'istante reale della vibrazione. Il campo `timestamp` del dispositivo
+  viene raccolto ma **non** è usato dall'algoritmo di clustering (verrà
+  riconsiderato nelle versioni future, con attenzione allo sfasamento orologi).
+- **La regola "≥3 nodi unici" è falsificabile nella v0.1.** Il `nodeId` è
+  fornito dal client e non c'è autenticazione né rate limiting; inoltre il CORS
+  è aperto in scrittura. Un client malevolo può inventare più `nodeId` e
+  **sintetizzare** un possibile cluster. Quindi un "possibile cluster" della
+  v0.1 indica una *coincidenza riportata da chi invia*, non un fatto verificato.
+  Autenticazione/limitazione sono in roadmap.
+- **Foreground service a tempo limitato su Android recenti.** Il tipo FGS usato
+  (`dataSync`) è soggetto a limiti di durata su Android 14+ (e ulteriormente
+  ristretto/deprecato per questo uso su Android 15): il sistema può **fermare**
+  il servizio dopo un budget giornaliero. Il funzionamento "sempre attivo" è
+  realistico soprattutto su Android meno recenti. Non è una promessa di
+  continuità 24/7.
 
 ## Sicurezza (prima versione)
 
 - Limite dimensione payload JSON (16 kB).
-- Rifiuto esplicito dei campi personali.
-- CORS aperto in **sola lettura** per consentire alla PWA di interrogare lo
-  stato; gli endpoint di scrittura andranno protetti nelle versioni successive
-  (rate limiting/autenticazione in roadmap).
+- Allowlist dei campi (solo 6 campi vengono mai memorizzati) + denylist
+  ridondante di alcuni campi personali.
+- **Nota onesta sul CORS**: l'header `Access-Control-Allow-Origin: *` è applicato
+  a tutte le risposte, comprese quelle di `POST /api/events`. Quindi anche la
+  **scrittura** è di fatto aperta. Unito all'assenza di autenticazione e rate
+  limiting (vedi *Limiti noti*), questo rende `POST /api/events` esposto a invii
+  arbitrari/spoofing e a possibile crescita di memoria entro il TTL. È accettabile
+  per la sperimentazione locale, **non** per un'esposizione pubblica.
+- Da fare (roadmap): autenticazione dei nodi, rate limiting, tetto al numero di
+  eventi in memoria, restrizione del CORS in scrittura.

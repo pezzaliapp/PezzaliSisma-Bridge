@@ -22,9 +22,6 @@ object EventUploader {
      * @return true se il server ha accettato l'evento (HTTP 2xx).
      */
     fun upload(endpoint: String, nodeId: String, zone: String, event: CandidateEvent): Boolean {
-        val base = endpoint.trimEnd('/')
-        val url = URL("$base/api/events")
-
         val payload = JSONObject().apply {
             put("nodeId", nodeId)
             put("zone", zone)
@@ -36,6 +33,10 @@ object EventUploader {
 
         var conn: HttpURLConnection? = null
         return try {
+            // Costruita qui dentro: un endpoint malformato (es. senza schema)
+            // deve dare false, non un'eccezione non gestita nella coroutine.
+            val base = endpoint.trimEnd('/')
+            val url = URL("$base/api/events")
             conn = (url.openConnection() as HttpURLConnection).apply {
                 requestMethod = "POST"
                 connectTimeout = 8000
